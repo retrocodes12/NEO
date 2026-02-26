@@ -2,11 +2,48 @@ import Link from "next/link";
 
 import { NeonOrb } from "@/components/shared/neon-orb";
 
-const stats = [
-  { label: "Websites Generated", value: "0" },
-  { label: "Avg. Time To First Draft", value: "0" },
-  { label: "Templates + Blocks", value: "0" },
-  { label: "Monthly Visitors Hosted", value: "0" },
+const checklist = ["AI-generated copy", "Instant publish", "Custom domains", "SEO optimized"];
+
+const steps = [
+  {
+    id: "01",
+    title: "Describe Your Business",
+    description: "Tell ElevateWeb what you do, who you serve, and the style you want in a single prompt.",
+  },
+  {
+    id: "02",
+    title: "Refine With Visual Editor",
+    description: "Adjust sections, rewrite copy, swap visuals, and tune layout blocks without touching code.",
+  },
+  {
+    id: "03",
+    title: "Publish And Connect Domain",
+    description: "Ship instantly on a hosted URL, then attach your custom domain when you are ready to go live.",
+  },
+];
+
+const pricing = [
+  {
+    tier: "Starter",
+    price: "$0",
+    summary: "For first launch and experiments.",
+    points: ["1 website", "AI generation credits", "ElevateWeb subdomain"],
+    cta: "Start Free",
+  },
+  {
+    tier: "Pro",
+    price: "$29",
+    summary: "For creators and small businesses.",
+    points: ["10 websites", "Custom domains", "SEO settings + analytics"],
+    cta: "Choose Pro",
+  },
+  {
+    tier: "Agency",
+    price: "$99",
+    summary: "For teams managing multiple clients.",
+    points: ["Unlimited websites", "Client workspaces", "Priority support"],
+    cta: "Contact Sales",
+  },
 ];
 
 export default function MarketingPage() {
@@ -51,27 +88,102 @@ export default function MarketingPage() {
             </Link>
           </div>
 
-          <div className="mt-9 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-            {stats.map((item) => (
-              <article key={item.label} className="rounded-xl border border-border/70 bg-background/30 px-4 py-3 backdrop-blur-lg">
-                <p className="text-2xl font-semibold">{item.value}</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{item.label}</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+            {checklist.map((item) => (
+              <div key={item} className="rounded-xl border border-border/70 bg-background/30 px-4 py-3 backdrop-blur-lg">
+                <p className="text-sm font-medium">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+          <article className="glass rounded-3xl p-7">
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">Business Input</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold">Tell us what you do</h2>
+            <p className="mt-3 text-sm text-muted-foreground">Example prompt</p>
+            <div className="mt-3 rounded-2xl border border-border/70 bg-background/30 p-4 text-sm leading-7 text-muted-foreground">
+              Build a modern website for a local dental clinic in Austin. Tone should be trustworthy and friendly. Include home,
+              services, pricing, testimonials, and booking CTA. Optimize for local SEO.
+            </div>
+            <div className="mt-4 rounded-xl border border-border/70 bg-background/40 px-4 py-3 text-sm text-muted-foreground">
+              AI Model: ElevateWeb Composer v1
+            </div>
+          </article>
+
+          <article className="glass rounded-3xl p-7">
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">Generated Preview</p>
+            <div className="mt-3 rounded-2xl border border-border/70 bg-background/35 p-4">
+              <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background/35 px-3 py-2 text-xs text-muted-foreground">
+                <span>www.brightsmileclinic.com</span>
+                <span>Published Draft</span>
+              </div>
+
+              <div className="mt-4 space-y-3">
+                <div className="rounded-xl border border-border/60 bg-background/30 p-4">
+                  <p className="text-xs uppercase tracking-[0.2em] text-accent">Hero</p>
+                  <p className="mt-2 font-heading text-2xl">Care You Can Trust, Smiles You Will Love</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Family and cosmetic dentistry with same-day appointments.</p>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-3">
+                  <div className="rounded-xl border border-border/60 bg-background/30 p-3 text-sm">Teeth Whitening</div>
+                  <div className="rounded-xl border border-border/60 bg-background/30 p-3 text-sm">Dental Implants</div>
+                  <div className="rounded-xl border border-border/60 bg-background/30 p-3 text-sm">Emergency Care</div>
+                </div>
+
+                <div className="flex items-center justify-between rounded-xl border border-border/60 bg-background/30 p-3">
+                  <p className="text-sm text-muted-foreground">Ready to launch</p>
+                  <button className="neon-ring rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground">Publish</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-accent">How ElevateWeb Works</p>
+              <h2 className="mt-2 font-heading text-3xl font-semibold">From idea to live website in 3 steps</h2>
+            </div>
+            <NeonOrb className="orb-shell hidden h-28 w-28 md:block" />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {steps.map((step) => (
+              <article key={step.id} className="glass rounded-2xl p-6">
+                <p className="text-sm font-semibold text-accent">{step.id}</p>
+                <h3 className="mt-2 font-heading text-xl font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{step.description}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
-          <article className="glass rounded-3xl p-7">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent">How ElevateWeb Works</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold">Prompt. Refine. Publish. Grow.</h2>
-            <p className="mt-4 text-muted-foreground">
-              Built for small businesses, creators, and agencies that need launch speed without sacrificing quality. Generate first draft with AI,
-              tune layout and content in the editor, then publish with one click.
-            </p>
-          </article>
-          <div className="glass relative flex items-center justify-center rounded-3xl p-7">
-            <NeonOrb className="orb-shell h-56 w-56" />
+        <section className="space-y-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">Pricing Preview</p>
+            <h2 className="mt-2 font-heading text-3xl font-semibold">Plans that scale with your growth</h2>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {pricing.map((plan) => (
+              <article key={plan.tier} className="glass rounded-2xl p-6">
+                <p className="text-sm uppercase tracking-[0.2em] text-accent">{plan.tier}</p>
+                <p className="mt-2 font-heading text-4xl font-semibold">{plan.price}</p>
+                <p className="text-xs text-muted-foreground">/month</p>
+                <p className="mt-3 text-sm text-muted-foreground">{plan.summary}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {plan.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+                <button className="mt-6 w-full rounded-xl border border-border bg-background/40 px-4 py-2 text-sm font-semibold">
+                  {plan.cta}
+                </button>
+              </article>
+            ))}
           </div>
         </section>
       </div>
