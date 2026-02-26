@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NeonGlass Starter",
+  title: "ElevateWeb",
   description: "Production-ready Next.js App Router starter",
 };
 

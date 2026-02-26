@@ -18,7 +18,7 @@ export default function MarketingPage() {
 
       <div className="relative mx-auto max-w-6xl space-y-8">
         <header className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/35 px-5 py-4 backdrop-blur-xl">
-          <p className="font-heading text-2xl font-semibold neon-text">NeonForge</p>
+          <p className="font-heading text-2xl font-semibold neon-text">ElevateWeb</p>
           <nav className="hidden gap-5 text-sm text-muted-foreground md:flex">
             <span>Product</span>
             <span>How It Works</span>
@@ -35,7 +35,7 @@ export default function MarketingPage() {
           <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold neon-text md:text-6xl">
             Describe your business.
             <br />
-            NeonForge builds your website in seconds.
+            ElevateWeb builds your website in seconds.
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
             Turn a plain-language prompt into a complete, production-ready site with pages, copy, visuals, and conversion sections.
@@ -63,7 +63,7 @@ export default function MarketingPage() {
 
         <section className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
           <article className="glass rounded-3xl p-7">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent">How NeonForge Works</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">How ElevateWeb Works</p>
             <h2 className="mt-3 font-heading text-3xl font-semibold">Prompt. Refine. Publish. Grow.</h2>
             <p className="mt-4 text-muted-foreground">
               Built for small businesses, creators, and agencies that need launch speed without sacrificing quality. Generate first draft with AI,

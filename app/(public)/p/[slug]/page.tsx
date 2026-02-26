@@ -13,13 +13,13 @@ export default async function PublishedPage({ params }: PublicPageProps) {
         <p className="text-xs uppercase tracking-[0.2em] text-accent">Published Site</p>
         <h1 className="mt-3 font-heading text-4xl font-semibold neon-text md:text-6xl">{slug.replaceAll("-", " ")}</h1>
         <p className="mt-5 max-w-3xl text-muted-foreground md:text-lg">
-          Public endpoint for a NeonForge-generated website. Connect your CMS data and deploy to your custom domain.
+          Public endpoint for an ElevateWeb-generated website. Connect your CMS data and deploy to your custom domain.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-border/70 bg-background/30 p-4">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Theme</p>
-            <p className="mt-1 font-semibold">NeonForge Glass Dark</p>
+            <p className="mt-1 font-semibold">ElevateWeb Glass Dark</p>
           </div>
           <div className="rounded-xl border border-border/70 bg-background/30 p-4">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Published Revisions</p>

@@ -15,7 +15,7 @@ export default function DashboardPage() {
     <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <article className="glass rounded-3xl p-6 md:p-8">
         <p className="text-xs uppercase tracking-[0.2em] text-accent">Workspace</p>
-        <h1 className="mt-2 font-heading text-4xl font-semibold">NeonForge Dashboard</h1>
+        <h1 className="mt-2 font-heading text-4xl font-semibold">ElevateWeb Dashboard</h1>
         <p className="mt-3 text-muted-foreground">
           Monitor your AI website generation funnel from prompt to publish in one place.
         </p>
