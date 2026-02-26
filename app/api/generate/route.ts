@@ -233,7 +233,8 @@ async function generateOnce(client: OpenAI, input: z.infer<typeof generateInputS
         content: [
           {
             type: "input_text",
-            text: "You generate structured website content plans. Return strict JSON only. Never output HTML or markdown.",
+            text:
+              "You are an expert SaaS landing page copywriter.\n\nReturn ONLY valid JSON.\nDo not include markdown.\nDo not include explanations.\nDo not wrap output in code blocks.\n\nYou generate structured website content plans. Return strict JSON only. Never output HTML or markdown.",
           },
         ],
       },
