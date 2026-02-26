@@ -1,6 +1,6 @@
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-import { requireUser } from "@/lib/auth";
 import { createSite, listSitesByUser, type SiteContent } from "@/lib/db/sites";
 
 interface CreateSiteRequest {
@@ -14,8 +14,13 @@ interface CreateSiteRequest {
 
 export async function GET() {
   try {
-    const user = await requireUser();
-    const sites = await listSitesByUser(user.id);
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const sites = await listSitesByUser(userId);
     return NextResponse.json({ sites });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to list sites";
@@ -25,7 +30,12 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const user = await requireUser();
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = (await request.json()) as Partial<CreateSiteRequest>;
 
     if (!body.name || !body.industry || !body.tone || !body.location || !body.goal || !body.contentJson) {
@@ -33,7 +43,7 @@ export async function POST(request: Request) {
     }
 
     const site = await createSite({
-      userId: user.id,
+      userId,
       name: String(body.name),
       industry: String(body.industry),
       tone: String(body.tone),

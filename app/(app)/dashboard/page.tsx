@@ -1,16 +1,20 @@
 import Link from "next/link";
+import { auth } from "@clerk/nextjs/server";
 
-import { requireUser } from "@/lib/auth";
 import { listSitesByUser, type Site } from "@/lib/db/sites";
 
 export default async function DashboardPage() {
-  const user = await requireUser();
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
 
   let sites: Site[] = [];
   let errorMessage: string | null = null;
 
   try {
-    sites = await listSitesByUser(user.id);
+    sites = await listSitesByUser(userId);
   } catch (error) {
     errorMessage = error instanceof Error ? error.message : "Failed to load sites.";
   }

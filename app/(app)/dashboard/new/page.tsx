@@ -1,6 +1,14 @@
+import { auth } from "@clerk/nextjs/server";
+
 import { CreateSiteForm } from "./site-form";
 
-export default function NewSitePage() {
+export default async function NewSitePage() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
   return (
     <section className="space-y-4">
       <div>

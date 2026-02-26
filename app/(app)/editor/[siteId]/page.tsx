@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
-import { requireUser } from "@/lib/auth";
 import { getSiteByIdForUser } from "@/lib/db/sites";
 
 import { EditorClient } from "./site-editor";
@@ -11,9 +11,13 @@ interface EditorPageProps {
 
 export default async function EditorPage({ params }: EditorPageProps) {
   const { siteId } = await params;
-  const user = await requireUser();
+  const { userId } = await auth();
 
-  const site = await getSiteByIdForUser(siteId, user.id);
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const site = await getSiteByIdForUser(siteId, userId);
 
   if (!site) {
     notFound();
