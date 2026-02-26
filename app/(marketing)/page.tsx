@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { NeonOrb } from "@/components/shared/neon-orb";
+
 const stats = [
   { label: "Days", value: "5" },
   { label: "Speakers", value: "40" },
@@ -12,6 +14,7 @@ export default function MarketingPage() {
     <main className="relative min-h-screen overflow-hidden px-6 py-10 md:px-10">
       <div className="pointer-events-none absolute -left-28 top-8 h-72 w-72 orb opacity-90" />
       <div className="pointer-events-none absolute -right-28 top-28 h-80 w-80 orb opacity-70" />
+      <div className="pointer-events-none absolute inset-0 hex-overlay" />
 
       <div className="relative mx-auto max-w-6xl space-y-8">
         <header className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/35 px-5 py-4 backdrop-blur-xl">
@@ -62,7 +65,7 @@ export default function MarketingPage() {
             </p>
           </article>
           <div className="glass relative flex items-center justify-center rounded-3xl p-7">
-            <div className="h-52 w-52 orb" />
+            <NeonOrb className="orb-shell h-56 w-56" />
           </div>
         </section>
       </div>
