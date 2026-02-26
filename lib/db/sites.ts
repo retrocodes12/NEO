@@ -182,3 +182,19 @@ export async function publishSite(siteId: string, userId: string): Promise<Site>
 
   return data as Site;
 }
+
+export async function countPublishedSitesByUser(userId: string): Promise<number> {
+  const supabase = getSupabaseAdminClient();
+
+  const { count, error } = await supabase
+    .from("sites")
+    .select("id", { head: true, count: "exact" })
+    .eq("user_id", userId)
+    .eq("status", "published");
+
+  if (error) {
+    throw new Error(`Failed to count published sites: ${error.message}`);
+  }
+
+  return count ?? 0;
+}

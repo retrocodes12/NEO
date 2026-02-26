@@ -1,7 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-import { publishSite, updateSiteContent, type SiteContent } from "@/lib/db/sites";
+import { getUserPlan } from "@/lib/billing";
+import { countPublishedSitesByUser, getSiteByIdForUser, publishSite, updateSiteContent, type SiteContent } from "@/lib/db/sites";
 
 interface UpdateSiteRequest {
   action?: "publish";
@@ -20,6 +21,24 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const body = (await request.json()) as UpdateSiteRequest;
 
     if (body.action === "publish") {
+      const plan = await getUserPlan(userId);
+      const existingSite = await getSiteByIdForUser(id, userId);
+
+      if (!existingSite) {
+        return NextResponse.json({ error: "Site not found" }, { status: 404 });
+      }
+
+      if (plan === "free" && existingSite.status !== "published") {
+        const publishedCount = await countPublishedSitesByUser(userId);
+
+        if (publishedCount >= 1) {
+          return NextResponse.json(
+            { error: "Free plan allows only 1 published site. Upgrade to Pro for unlimited published sites." },
+            { status: 403 },
+          );
+        }
+      }
+
       const site = await publishSite(id, userId);
       return NextResponse.json({ site });
     }
