@@ -3,10 +3,10 @@ import Link from "next/link";
 import { NeonOrb } from "@/components/shared/neon-orb";
 
 const stats = [
-  { label: "Days", value: "5" },
-  { label: "Speakers", value: "40" },
-  { label: "Tracks", value: "8" },
-  { label: "Sponsors", value: "25" },
+  { label: "Websites Generated", value: "12K+" },
+  { label: "Avg. Time To First Draft", value: "45s" },
+  { label: "Templates + Blocks", value: "250+" },
+  { label: "Monthly Visitors Hosted", value: "18M+" },
 ];
 
 export default function MarketingPage() {
@@ -18,31 +18,36 @@ export default function MarketingPage() {
 
       <div className="relative mx-auto max-w-6xl space-y-8">
         <header className="flex items-center justify-between rounded-2xl border border-border/70 bg-card/35 px-5 py-4 backdrop-blur-xl">
-          <p className="font-heading text-2xl font-semibold neon-text">Alvent</p>
+          <p className="font-heading text-2xl font-semibold neon-text">NeonForge</p>
           <nav className="hidden gap-5 text-sm text-muted-foreground md:flex">
-            <span>Home</span>
-            <span>Speakers</span>
-            <span>Schedule</span>
-            <span>Tickets</span>
+            <span>Product</span>
+            <span>How It Works</span>
+            <span>Pricing</span>
+            <span>Docs</span>
           </nav>
           <Link href="/dashboard" className="neon-ring rounded-lg bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground">
-            Buy Tickets
+            Start Building
           </Link>
         </header>
 
         <section className="glass panel-grid relative overflow-hidden rounded-3xl p-7 md:p-10">
-          <p className="text-sm uppercase tracking-[0.24em] text-accent">AI Event, Conference and Meetup Website Template</p>
-          <h1 className="mt-4 max-w-3xl font-heading text-4xl font-semibold neon-text md:text-6xl">AI Summit 2026</h1>
+          <p className="text-sm uppercase tracking-[0.24em] text-accent">AI Website Builder SaaS</p>
+          <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold neon-text md:text-6xl">
+            Describe your business.
+            <br />
+            NeonForge builds your website in seconds.
+          </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            A futuristic launchpad for AI conferences with ticketing, session tracks, and sponsor-ready layouts.
+            Turn a plain-language prompt into a complete, production-ready site with pages, copy, visuals, and conversion sections.
+            Edit with a visual builder, publish instantly, and connect custom domains on paid plans.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Link href="/dashboard" className="neon-ring rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">
-              Get Tickets
+              Generate My Site
             </Link>
-            <Link href="/p/ai-summit-2026" className="rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-semibold">
-              View Schedule
+            <Link href="/p/demo-business-site" className="rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-semibold">
+              View Sample Output
             </Link>
           </div>
 
@@ -58,10 +63,11 @@ export default function MarketingPage() {
 
         <section className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
           <article className="glass rounded-3xl p-7">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent">About Event</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold">A Global Gathering of AI Innovators</h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-accent">How NeonForge Works</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold">Prompt. Refine. Publish. Grow.</h2>
             <p className="mt-4 text-muted-foreground">
-              Join founders, engineers, and researchers to explore real-world AI systems, safety, product strategy, and enterprise deployment.
+              Built for small businesses, creators, and agencies that need launch speed without sacrificing quality. Generate first draft with AI,
+              tune layout and content in the editor, then publish with one click.
             </p>
           </article>
           <div className="glass relative flex items-center justify-center rounded-3xl p-7">
