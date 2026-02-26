@@ -1,3 +1,7 @@
+import { notFound } from "next/navigation";
+
+import { getPublishedSiteBySlug } from "@/lib/db/sites";
+
 interface PublicPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -5,27 +9,28 @@ interface PublicPageProps {
 export default async function PublishedPage({ params }: PublicPageProps) {
   const { slug } = await params;
 
+  const site = await getPublishedSiteBySlug(slug);
+
+  if (!site) {
+    notFound();
+  }
+
   return (
-    <main className="relative mx-auto min-h-screen max-w-5xl px-6 py-12">
-      <div className="pointer-events-none absolute right-0 top-14 h-56 w-56 orb opacity-65" />
+    <main className="mx-auto min-h-screen max-w-4xl px-6 py-12">
+      <article className="space-y-8 rounded-2xl border bg-card/40 p-8">
+        <header>
+          <h1 className="font-heading text-4xl font-semibold">{site.name}</h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {site.industry} · {site.location}
+          </p>
+        </header>
 
-      <article className="glass panel-grid relative rounded-3xl p-8 md:p-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">Published Site</p>
-        <h1 className="mt-3 font-heading text-4xl font-semibold neon-text md:text-6xl">{slug.replaceAll("-", " ")}</h1>
-        <p className="mt-5 max-w-3xl text-muted-foreground md:text-lg">
-          Public endpoint for an ElevateWeb-generated website. Connect your CMS data and deploy to your custom domain.
-        </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Theme</p>
-            <p className="mt-1 font-semibold">ElevateWeb Glass Dark</p>
-          </div>
-          <div className="rounded-xl border border-border/70 bg-background/30 p-4">
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Published Revisions</p>
-            <p className="mt-1 font-semibold">0</p>
-          </div>
-        </div>
+        {site.content_json.sections.map((section) => (
+          <section key={section.id} className="space-y-2">
+            <h2 className="font-heading text-2xl font-semibold">{section.title}</h2>
+            <p className="text-muted-foreground">{section.text}</p>
+          </section>
+        ))}
       </article>
     </main>
   );
