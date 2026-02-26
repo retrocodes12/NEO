@@ -1,6 +1,6 @@
 create table if not exists public.subscriptions (
   id uuid primary key default gen_random_uuid(),
-  provider text not null check (provider in ('stripe')),
+  provider text not null check (provider in ('stripe', 'razorpay')),
   clerk_user_id text,
   plan text not null default 'pro',
   status text not null,

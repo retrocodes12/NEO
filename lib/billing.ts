@@ -9,20 +9,34 @@ export async function getUserPlan(userId: string): Promise<PlanType> {
 
   const { data, error } = await supabase
     .from("subscriptions")
-    .select("status")
-    .eq("provider", "stripe")
+    .select("provider,status,current_period_end")
     .eq("clerk_user_id", userId)
     .order("updated_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .limit(20);
 
   if (error) {
     throw new Error(`Failed to resolve user plan: ${error.message}`);
   }
 
-  if (!data) {
+  if (!data || data.length === 0) {
     return "free";
   }
 
-  return PRO_STATUSES.has(String(data.status)) ? "pro" : "free";
+  const now = Date.now();
+
+  const hasActivePlan = data.some((row) => {
+    const status = String(row.status);
+
+    if (!PRO_STATUSES.has(status)) {
+      return false;
+    }
+
+    if (!row.current_period_end) {
+      return true;
+    }
+
+    return new Date(String(row.current_period_end)).getTime() > now;
+  });
+
+  return hasActivePlan ? "pro" : "free";
 }

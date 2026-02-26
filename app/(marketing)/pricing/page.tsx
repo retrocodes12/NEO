@@ -1,3 +1,5 @@
+import { PaymentButtons } from "./payment-buttons";
+
 const pricing = [
   {
     tier: "Starter",
@@ -46,6 +48,17 @@ export default function PricingPage() {
           </article>
         ))}
       </div>
+
+      <section className="glass rounded-2xl p-6">
+        <p className="text-xs uppercase tracking-[0.2em] text-accent">Upgrade</p>
+        <h2 className="mt-2 font-heading text-2xl font-semibold">Unlock Pro</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Choose card subscription with Stripe or a one-time UPI payment via Razorpay for 30-day Pro access.
+        </p>
+        <div className="mt-4">
+          <PaymentButtons />
+        </div>
+      </section>
     </section>
   );
 }

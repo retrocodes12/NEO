@@ -5,6 +5,8 @@ const isProtectedRoute = createRouteMatcher([
   "/editor(.*)",
   "/api/generate",
   "/api/sites(.*)",
+  "/api/stripe/checkout",
+  "/api/razorpay/order",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
