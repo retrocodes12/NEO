@@ -124,7 +124,7 @@ const openAiOutputJsonSchema = {
             type: "object",
             additionalProperties: false,
             properties: {
-              type: { const: "about" },
+              type: { type: "string", enum: ["about"] },
               title: { type: "string" },
               body: { type: "string" },
             },
@@ -134,7 +134,7 @@ const openAiOutputJsonSchema = {
             type: "object",
             additionalProperties: false,
             properties: {
-              type: { const: "services" },
+              type: { type: "string", enum: ["services"] },
               title: { type: "string" },
               items: {
                 type: "array",
@@ -156,7 +156,7 @@ const openAiOutputJsonSchema = {
             type: "object",
             additionalProperties: false,
             properties: {
-              type: { const: "testimonials" },
+              type: { type: "string", enum: ["testimonials"] },
               title: { type: "string" },
               items: {
                 type: "array",
@@ -178,7 +178,7 @@ const openAiOutputJsonSchema = {
             type: "object",
             additionalProperties: false,
             properties: {
-              type: { const: "faq" },
+              type: { type: "string", enum: ["faq"] },
               title: { type: "string" },
               items: {
                 type: "array",
@@ -200,7 +200,7 @@ const openAiOutputJsonSchema = {
             type: "object",
             additionalProperties: false,
             properties: {
-              type: { const: "contact" },
+              type: { type: "string", enum: ["contact"] },
               title: { type: "string" },
               email: { type: "string" },
               phone: { type: "string" },
