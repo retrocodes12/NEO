@@ -3,10 +3,10 @@ import Link from "next/link";
 import { NeonOrb } from "@/components/shared/neon-orb";
 
 const stats = [
-  { label: "Websites Generated", value: "12K+" },
-  { label: "Avg. Time To First Draft", value: "45s" },
-  { label: "Templates + Blocks", value: "250+" },
-  { label: "Monthly Visitors Hosted", value: "18M+" },
+  { label: "Websites Generated", value: "0" },
+  { label: "Avg. Time To First Draft", value: "0" },
+  { label: "Templates + Blocks", value: "0" },
+  { label: "Monthly Visitors Hosted", value: "0" },
 ];
 
 export default function MarketingPage() {

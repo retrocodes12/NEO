@@ -18,9 +18,9 @@ export default async function EditorPage({ params }: EditorPageProps) {
           <p className="text-sm font-semibold">Sections</p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>Hero</li>
-            <li>Speaker Grid</li>
-            <li>Schedule</li>
-            <li>Ticket Plans</li>
+            <li>Features</li>
+            <li>Testimonials</li>
+            <li>Call To Action</li>
           </ul>
         </aside>
         <article className="rounded-2xl border border-border/70 bg-background/30 p-4">

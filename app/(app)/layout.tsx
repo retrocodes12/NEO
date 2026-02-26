@@ -15,7 +15,7 @@ export default async function AppShellLayout({
 
       <header className="glass relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between rounded-2xl px-5">
         <Link href="/" className="font-heading text-xl font-semibold neon-text">
-          Alvent Console
+          NeonForge Console
         </Link>
         <div className="rounded-md border border-border/70 bg-background/20 px-3 py-1 text-sm text-muted-foreground">{user.email}</div>
       </header>
