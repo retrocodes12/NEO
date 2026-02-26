@@ -25,6 +25,20 @@ async function loadRazorpayScript(): Promise<boolean> {
   });
 }
 
+async function parseJsonSafe(response: Response): Promise<Record<string, unknown>> {
+  const text = await response.text();
+
+  if (!text) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(text) as Record<string, unknown>;
+  } catch {
+    return { error: `Unexpected response (${response.status}). Please sign in and try again.` };
+  }
+}
+
 export function PaymentButtons() {
   const [loading, setLoading] = useState<"stripe" | "razorpay" | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,9 +49,13 @@ export function PaymentButtons() {
 
     try {
       const response = await fetch("/api/stripe/checkout", { method: "POST" });
-      const json = (await response.json()) as { url?: string; error?: string };
+      const json = (await parseJsonSafe(response)) as { url?: string; error?: string };
 
       if (!response.ok || !json.url) {
+        if (response.status === 401) {
+          throw new Error("Please sign in to continue checkout.");
+        }
+
         throw new Error(json.error ?? "Failed to start Stripe checkout");
       }
 
@@ -60,7 +78,7 @@ export function PaymentButtons() {
       }
 
       const response = await fetch("/api/razorpay/order", { method: "POST" });
-      const json = (await response.json()) as {
+      const json = (await parseJsonSafe(response)) as {
         keyId?: string;
         orderId?: string;
         amount?: number;
@@ -69,6 +87,10 @@ export function PaymentButtons() {
       };
 
       if (!response.ok || !json.keyId || !json.orderId || !json.amount || !json.currency) {
+        if (response.status === 401) {
+          throw new Error("Please sign in to continue checkout.");
+        }
+
         throw new Error(json.error ?? "Failed to create Razorpay order");
       }
 
