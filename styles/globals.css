@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.95rem;
+
+  --background: oklch(0.15 0.035 276);
+  --foreground: oklch(0.98 0.014 255);
+  --card: oklch(0.23 0.035 271 / 76%);
+  --card-foreground: oklch(0.98 0.014 255);
+  --popover: oklch(0.19 0.036 274 / 94%);
+  --popover-foreground: oklch(0.97 0.014 255);
+
+  --primary: oklch(0.74 0.24 300);
+  --primary-foreground: oklch(0.2 0.04 275);
+  --secondary: oklch(0.34 0.05 271);
+  --secondary-foreground: oklch(0.96 0.016 255);
+  --muted: oklch(0.29 0.04 272);
+  --muted-foreground: oklch(0.79 0.03 256);
+  --accent: oklch(0.8 0.16 240);
+  --accent-foreground: oklch(0.17 0.03 265);
+  --destructive: oklch(0.66 0.22 27);
+  --border: oklch(0.47 0.08 279 / 50%);
+  --input: oklch(0.35 0.05 272 / 52%);
+  --ring: oklch(0.83 0.2 292 / 72%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 18% 6%, rgba(184, 97, 255, 0.34), transparent 30%),
+      radial-gradient(circle at 82% -2%, rgba(76, 139, 255, 0.36), transparent 32%),
+      radial-gradient(circle at 50% 100%, rgba(24, 43, 122, 0.42), transparent 35%),
+      linear-gradient(180deg, #0d1135 0%, #0a0f2e 44%, #080b22 100%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading), var(--font-inter), sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: linear-gradient(140deg, rgba(117, 76, 255, 0.19), rgba(30, 63, 153, 0.26));
+    border: 1px solid rgba(160, 140, 255, 0.4);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset, 0 24px 80px rgba(8, 12, 38, 0.62), 0 0 48px rgba(116, 76, 255, 0.24);
+    backdrop-filter: blur(20px);
+  }
+
+  .neon-ring {
+    box-shadow: 0 0 0 1px rgba(223, 168, 255, 0.65), 0 0 20px rgba(160, 94, 255, 0.66), 0 0 40px rgba(63, 127, 255, 0.46);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 16px rgba(160, 96, 255, 0.74);
+  }
+
+  .orb {
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 35%, rgba(208, 150, 255, 0.94), rgba(121, 69, 255, 0.72) 34%, rgba(53, 93, 255, 0.4) 58%, rgba(20, 28, 72, 0.24) 78%, transparent 100%);
+    filter: drop-shadow(0 0 40px rgba(140, 90, 255, 0.55));
+  }
+
+  .panel-grid {
+    background-image: linear-gradient(rgba(175, 157, 255, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(175, 157, 255, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
